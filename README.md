@@ -1,5 +1,9 @@
 # CI-пайплайн настроен
 
+markdown
+# DevTools Project
+[![Java CI with Checkstyle and Coverage](https://github.com/EchoesOfTime/java-dev-tools/actions/workflows/ci.yml/badge.svg)](https://github.com/EchoesOfTime/java-dev-tools/actions/workflows/ci.yml)
+
 Quick Start: как запустить задачи run, build, test через Gradle Tool Window – (Tasks → application → run), (Tasks → build → build), (Tasks → verification → test) и Run Anything (Ctrl + Ctrl) – ввести (gradle run) или (gradle test).
 Packages: короткое объяснение, зачем нужен пакет ru.mentee.power - предотвратить хаос и дать структуру, чтобы не было конфликта при импорте.
 Таблица переменных/полей: menteeName – имя студента, sprintNumber – номер спринта, plannedHoursPerWeek - запланированные часы, правило readyForSprint() - метод без аргументов, который возвращает логическое значение (true или false).
