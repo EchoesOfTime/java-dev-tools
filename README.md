@@ -1,18 +1,116 @@
-# CI-пайплайн настроен
-
-markdown
 # DevTools Project
 [![Java CI with Checkstyle and Coverage](https://github.com/EchoesOfTime/java-dev-tools/actions/workflows/ci.yml/badge.svg)](https://github.com/EchoesOfTime/java-dev-tools/actions/workflows/ci.yml)
 
-Quick Start: как запустить задачи run, build, test через Gradle Tool Window – (Tasks → application → run), (Tasks → build → build), (Tasks → verification → test) и Run Anything (Ctrl + Ctrl) – ввести (gradle run) или (gradle test).
-Packages: короткое объяснение, зачем нужен пакет ru.mentee.power - предотвратить хаос и дать структуру, чтобы не было конфликта при импорте.
-Таблица переменных/полей: menteeName – имя студента, sprintNumber – номер спринта, plannedHoursPerWeek - запланированные часы, правило readyForSprint() - метод без аргументов, который возвращает логическое значение (true или false).
-public record MenteeProgress(String menteeName, int sprintNumber, int plannedHoursPerWeek)- это класс record где хранятся данные: имя стажера, номер сринта, запланированные часы.
+
+
+## Code Review Checklist
+
+Используйте этот чеклист для само-ревью перед запросом ревью у ментора:
+
+### Функциональность
+- [ ] Код решает поставленную задачу полностью
+- [ ] Обработаны граничные случаи (null, пустые данные, экстремальные значения)
+- [ ] Обработка ошибок реализована корректно
+
+### Тесты
+- [ ] Добавлены тесты для нового функционала (или обновлены существующие)
+- [ ] Все тесты проходят локально: `./gradlew test`
+- [ ] Покрыты позитивные и негативные сценарии
+- [ ] JaCoCo coverage ≥ 80% для нового кода
+
+### Читаемость и стиль
+- [ ] Имена переменных, методов и классов отражают назначение
+- [ ] Нет дублирования кода (DRY principle)
+- [ ] Checkstyle проходит без ошибок: `./gradlew checkstyleMain`
+- [ ] Нет закомментированного кода или отладочного вывода (`System.out.println`)
+
+### Документация
+- [ ] README обновлён (если добавлена новая функциональность)
+- [ ] Публичные методы имеют JavaDoc (если применимо)
+- [ ] Примеры использования актуальны
+- [ ] Runbook обновлён (если изменились команды запуска/проверки)
+
+### Производительность и безопасность
+- [ ] Нет очевидных проблем производительности
+- [ ] Нет хардкода паролей, токенов или конфиденциальных данных
+
+
+
+## Примеры Code Review комментариев
+
+### Хорошие комментарии (конструктивные)
+
+**Пример 1:**
+
+**Проблема:** Метод `calculateDiscount` (строка 45) имеет 3 вложенных if-else и 40 строк.
+**Почему это важно:** Сложная логика плохо тестируется и тяжело поддерживается.
+**Предложение:** Вынести каждое условие в отдельный метод (например, `isEligibleForBonusDiscount()`)
+и использовать паттерн Strategy для разных типов скидок.
+
+
+
+**Пример 2:**
+
+**Проблема:** Тест `testProcessOrder` (строка 78) проверяет только успешный сценарий.
+**Почему это важно:** Не проверена обработка ошибок при недостаточном балансе.
+**Предложение:** Добавить тест `testProcessOrder_InsufficientBalance_ThrowsException()`
+с использованием `assertThatThrownBy()`.
+
+
+
+### Плохие комментарии (неконструктивные)
+
+**Пример 1:**
+
+Этот код ужасен, полностью переписать.
+
+
+**Почему плохо:** Нет конкретики (что именно плохо), нет предложения (как исправить),
+токсичный тон (демотивирует автора).
+
+**Пример 2:**
+
+Здесь лучше использовать Stream API.
+
+
+**Почему плохо:** Нет объяснения почему лучше, нет примера как переписать,
+неясно какую проблему это решает.
+
+
+
+## Quick Start
+Через Gradle Tool Window (IDEA):
+
+1. Открыть View → Tool Windows → Gradle.
+2. В дереве задач выбери:
+   * `Tasks → application → run`
+   * `Tasks → build → build`
+   * `Tasks → verification → test`
+     (все задачи запускай двойным кликом)
+3. Альтернативно используй Ctrl + Ctrl (Run Anything)
+```bash
+gradle run
+gradle build
+gradle test
+```
+IDEA выполнит команду без терминала.
+
+## Packages
+`ru.mentee.power` — основной пакет с классами
+
+## Таблица переменных/полей MenteeProgress
+
+`menteeName` – имя студента
+`sprintNumber` – номер спринта
+`plannedHoursPerWeek` - запланированные часы
+`readyForSprint()` - метод без аргументов, который возвращает логическое значение (true или false).
+
 MenteeProgress - String menteeName, int sprintNumber, int plannedHoursPerWeek
-https://mentee-power.xl.ru/learn/eZTCGC3TuEW8P6jDvNRFZw/theory
 
-## Правило веток (Branching Strategy)
+Ссылка на урок
+- https://mentee-power.xl.ru/learn/eZTCGC3TuEW8P6jDvNRFZw/theory
 
+## Правило веток: feature/DVT-X
 В проекте используется стратегия ветвления, основанная на ветках `feature`.
 *   `master` — основная ветка для стабильного кода.
 *   `feature/DVT-X` — ветка для разработки задачи с идентификатором DVT-3.
