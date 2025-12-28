@@ -16,8 +16,6 @@ public class StudentList {
     }
   }
 
-  //TODO
-
   public List<Student> getStudentsByCity(String city) {
     return studentlist.stream()
         .filter(s -> s.city().equals(city))

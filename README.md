@@ -80,13 +80,13 @@
 ### Найденные проблемы
 
 #### 1. Забыт отладочный вывод
-**Файл:** src/main/java/ru/mentee/power/devtools/progressProgressTracker.java (строка 34)
+**Файл:** src/main/java/ru/mentee/power/devtools/progress/ProgressTracker.java (строка 34)
 **Проблема:** Оставлен `System.out.println("Debug: starting loop")`
 **Почему важно:** Отладочный вывод замусоривает логи production-приложения и создаёт впечатление небрежности.
 **Исправление:** Удалить строку или заменить на logger (если логирование настроено).
 
 #### 2. Закомментированный код
-**Файл:** src/main/java/ru/mentee/power/devtools/ProgressLoop.java (строки 3,4)
+**Файл:** src/main/java/ru/mentee/power/devtools/ProgressDemo.java (строки 3,4)
 **Проблема:** Закомментированы 2 строк старой реализации цикла
 **Почему важно:** Закомментированный код создаёт путаницу: непонятно зачем он сохранён и актуален ли.
 Если нужна история изменений — она в Git.
