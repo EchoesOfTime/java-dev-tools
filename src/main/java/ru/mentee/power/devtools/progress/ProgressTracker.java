@@ -31,5 +31,6 @@ public class ProgressTracker {
     };
     String progress = tracker.calculateTotalProgress(mentees);
     System.out.println(progress);
+    System.out.println("Debug: starting loop");
   }
 }
