@@ -1,4 +1,4 @@
-package ru.mentee.power.devtools.progress;
+package ru.mentee.power.devtools;
 
 public class LiveCodingDemo {
   public static void printFizzBuzz(int n) {
